@@ -7,10 +7,12 @@
     android:orientation="vertical"
     tools:context=".Registartion.Admin_signup">
 
+
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
+        android:id="@+id/admin_name"
         android:textStyle="bold"
         android:layout_marginTop="150dp"
         android:textSize="20sp"
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Email"
+        android:id="@+id/admin_email"
         android:textStyle="bold"
         android:textSize="20sp"
         />
@@ -27,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:id="@+id/admin_password"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
@@ -44,9 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:id="@+id/adminsignup"
         android:layout_marginTop="10dp"
         android:text="SIGN UP"/>
 
-
-
-</LinearLayout>
+    </LinearLayout>
