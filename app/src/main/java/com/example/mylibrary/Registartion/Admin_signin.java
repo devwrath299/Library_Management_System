@@ -3,7 +3,9 @@ package com.example.mylibrary.Registartion;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Admin_signin extends AppCompatActivity {
      TextView username,password;
      Button button;
+    ProgressDialog progressDialog;
      FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +46,20 @@ public class Admin_signin extends AppCompatActivity {
             public void onClick(View view) {
                 String user=username.getText().toString();
                 String pass=password.getText().toString();
+                progressDialog=new ProgressDialog(Admin_signin.this);
+                progressDialog.setMessage("Wait");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setProgress(20);
+                progressDialog.show();
              if(!user.isEmpty() && !pass.isEmpty())
              {
                  fn(user,pass);
              }
              else
              {
+                 progressDialog.dismiss();
                  Toast.makeText(getApplicationContext(), "Enter All Credentials", Toast.LENGTH_SHORT).show();
              }
             }
@@ -62,14 +73,20 @@ public class Admin_signin extends AppCompatActivity {
         auth.signInWithEmailAndPassword(a,b).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-               if(task.isSuccessful())
+                progressDialog.dismiss();
+               try
                {
+                   SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+                   SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                   Toast.makeText(getApplicationContext(), "Sign in Sucessful", Toast.LENGTH_SHORT).show();
+                   myEdit.putString("name","admin");
+                   myEdit.commit();
                    Toast.makeText(getApplicationContext(), "Sign in Sucessful", Toast.LENGTH_SHORT).show();
                    startActivity(new Intent(getApplicationContext(), adminMain.class));
                }
-               else
+               catch (Exception e)
                {
-                   Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                }
             }
         });

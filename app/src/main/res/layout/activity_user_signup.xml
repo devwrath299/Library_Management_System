@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
+        android:id="@+id/username"
         android:textStyle="bold"
         android:layout_marginTop="150dp"
         android:textSize="20sp"
@@ -20,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Email"
+        android:id="@+id/useremail"
         android:textStyle="bold"
         android:textSize="20sp"
         />
@@ -27,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:id="@+id/userpass"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
@@ -44,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:id="@+id/user_sign_up"
         android:layout_marginTop="10dp"
         android:text="SIGN UP"/>
 

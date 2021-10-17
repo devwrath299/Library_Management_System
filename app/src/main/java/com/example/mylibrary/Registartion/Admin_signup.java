@@ -3,7 +3,9 @@ package com.example.mylibrary.Registartion;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +29,7 @@ import com.google.firebase.ktx.Firebase;
 public class Admin_signup extends AppCompatActivity {
    TextView username,email,password;
    Button signup;
+    ProgressDialog progressDialog;
    FirebaseAuth auth;
    FirebaseDatabase database;
    DatabaseReference refrence;
@@ -56,10 +59,18 @@ public class Admin_signup extends AppCompatActivity {
        signup.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
+               progressDialog=new ProgressDialog(Admin_signup.this);
+               progressDialog.setMessage("Wait");
+               progressDialog.setCanceledOnTouchOutside(false);
+               progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+               progressDialog.setIndeterminate(true);
+               progressDialog.setProgress(20);
+               progressDialog.show();
                if(!email.getText().toString().isEmpty() && !password.getText().toString().isEmpty() && !username.getText().toString().isEmpty())
                {fn(email.getText().toString(),password.getText().toString());}
                else
                {
+                   progressDialog.dismiss();
                    Toast.makeText(getApplicationContext(), "Enter All Credentials", Toast.LENGTH_SHORT).show();
                }
            }
@@ -71,17 +82,23 @@ public class Admin_signup extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(a,b).addOnCompleteListener(Admin_signup.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
+                progressDialog.dismiss();
+               try
+                {   SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    Toast.makeText(getApplicationContext(), "Sign in Sucessful", Toast.LENGTH_SHORT).show();
+                    myEdit.putString("name","admin");
+                    myEdit.commit();
+
                     Toast.makeText(getApplicationContext(), "Registration Succesful", Toast.LENGTH_SHORT).show();
                     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     refrence.child("admin").child(currentuser).child("Adminame").setValue(username.getText().toString());
                     startActivity(new Intent(Admin_signup.this,adminMain.class));
                     finish();
                 }
-                else
+                catch(Exception e)
                 {
-                    Toast.makeText(getApplicationContext(),"Try Again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
             }
