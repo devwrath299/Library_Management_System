@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_admin_signin.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/activity_admin_signup.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/activity_first.xml" value="0.16041666666666668" />
@@ -14,6 +14,11 @@
         <entry key="app/src/main/res/layout/activity_usermain.xml" value="0.176" />
         <entry key="app/src/main/res/layout/dialog.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/dialog_for_adminid.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/fragment_add__book.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/fragment_admin_profile.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/fragment_u_sers_profile.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/fragment_update_book.xml" value="0.14270833333333333" />
         <entry key="app/src/main/res/layout/headeradmin.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/userheader.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/menu/adminmenu.xml" value="0.16041666666666668" />
