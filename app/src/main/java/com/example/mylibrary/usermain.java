@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.mylibrary.Admin_Fragments.Add_Book;
+import com.example.mylibrary.Admin_Fragments.AdminProfile;
+import com.example.mylibrary.Admin_Fragments.USers_profile;
+import com.example.mylibrary.UsersFragment.Finepay;
+import com.example.mylibrary.UsersFragment.Notification;
+import com.example.mylibrary.UsersFragment.Return;
+import com.example.mylibrary.UsersFragment.Searchbook;
+import com.example.mylibrary.UsersFragment.bookhistory;
+import com.example.mylibrary.UsersFragment.issue;
+import com.example.mylibrary.UsersFragment.user_profiles;
 import com.google.android.material.navigation.NavigationView;
 
 public class usermain extends AppCompatActivity {
@@ -34,15 +45,48 @@ public class usermain extends AppCompatActivity {
         toggle =new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        getSupportFragmentManager().beginTransaction().replace(R.id.user_containers,new Searchbook()).commit();
+
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            Fragment temp =new Fragment();
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                    Toast.makeText(getApplicationContext(), "fragement is opening", Toast.LENGTH_SHORT).show();
-                    drawerLayout.closeDrawer(GravityCompat.START);
-
-
+                switch (item.getItemId())
+                {
+                    case R.id.bookshisory:
+                    {
+                        temp=new bookhistory() ;
+                        break;
+                    }
+                    case R.id.searchbook:
+                    {
+                        temp=new Searchbook();
+                        break;
+                    }
+                    case R.id.fine_user:
+                    {
+                        temp=new Finepay();
+                        break;
+                    }
+                    case R.id.notification:
+                    {
+                        temp=new Notification();
+                        break;
+                    }
+                    case R.id.Issuebook:
+                    {
+                        temp=new issue();
+                        break;
+                    }
+                    case R.id.Returnbook:
+                    {
+                        temp=new Return();
+                        break;
+                    }
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.user_containers,temp).commit();
+                drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
@@ -71,8 +115,10 @@ public class usermain extends AppCompatActivity {
                 break;
             }
             case R.id.profile:
-                //your action
+            {
+                getSupportFragmentManager().beginTransaction().replace(R.id.user_containers,new USers_profile()).commit();
                 break;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }

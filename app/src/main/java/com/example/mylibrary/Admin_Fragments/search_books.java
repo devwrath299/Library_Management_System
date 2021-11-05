@@ -12,10 +12,10 @@ import com.example.mylibrary.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Update_book#newInstance} factory method to
+ * Use the {@link search_books#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Update_book extends Fragment {
+public class search_books extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Update_book extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Update_book() {
+    public search_books() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class Update_book extends Fragment {
      * @return A new instance of fragment Update_book.
      */
     // TODO: Rename and change types and number of parameters
-    public static Update_book newInstance(String param1, String param2) {
-        Update_book fragment = new Update_book();
+    public static search_books newInstance(String param1, String param2) {
+        search_books fragment = new search_books();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

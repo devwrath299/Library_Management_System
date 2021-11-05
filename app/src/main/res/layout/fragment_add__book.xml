@@ -3,14 +3,228 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
     tools:context=".Admin_Fragments.Add_Book">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello add book"
-        android:textSize="100sp"
-        android:gravity="center"/>
+        android:id="@+id/t100"
+        android:text="ADD BOOKS"
+        android:textSize="20sp"
+        android:layout_marginBottom="55dp"
+        android:layout_marginRight="130dp"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold|italic"
+        android:gravity="bottom|end"
+        />
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="20dp"
+        app:fabSize="normal"
+        app:fabCustomSize="80dp"
+        android:src="@drawable/ic_baseline_library_books_24"
+        app:maxImageSize="40sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:id="@+id/l1"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ADD BOOKS"
+            android:textColor="@color/teal_700"
+
+            android:textSize="50sp"
+
+
+            tools:visibility="visible" />
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="3dp"
+            android:layout_marginLeft="50dp"
+            android:background="@color/black"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BOOK ID"
+                android:textColor="@color/teal_700"
+                android:textSize="30sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/BOOKIDs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TITLE "
+                android:textColor="@color/teal_700"
+
+                android:textSize="30sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TITLEs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AUTHOR NAME"
+                android:textColor="@color/teal_700"
+
+                android:textSize="30sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/AUTHOR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COST "
+                android:textColor="@color/teal_700"
+
+                android:textSize="30sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+
+                android:textSize="30sp"
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QUANTITY"
+                android:textColor="@color/teal_700"
+
+                android:textSize="30sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BOOK SHELF NO"
+                android:textColor="@color/teal_700"
+
+                android:textSize="30sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bookshelfno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/adds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="ADD"
+            tools:visibility="visible" />
+
+
+    </LinearLayout>
 
 </FrameLayout>

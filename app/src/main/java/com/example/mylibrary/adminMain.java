@@ -13,14 +13,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.example.mylibrary.Admin_Fragments.Add_Book;
 import com.example.mylibrary.Admin_Fragments.AdminProfile;
 import com.example.mylibrary.Admin_Fragments.Payment;
 import com.example.mylibrary.Admin_Fragments.USers_profile;
-import com.example.mylibrary.Admin_Fragments.Update_book;
+import com.example.mylibrary.Admin_Fragments.search_books;
 import com.google.android.material.navigation.NavigationView;
 
 public class adminMain extends AppCompatActivity {
@@ -55,7 +53,7 @@ public class adminMain extends AppCompatActivity {
                     }
                     case R.id.updatebook:
                     {
-                        temp=new Update_book();
+                        temp=new search_books();
                         break;
                     }
                     case R.id.users_profile:
