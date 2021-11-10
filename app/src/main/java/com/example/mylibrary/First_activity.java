@@ -41,7 +41,7 @@ public class First_activity extends AppCompatActivity {
                 View view1=getLayoutInflater().inflate(R.layout.dialog,null);
                 EditText adminid=view1.findViewById(R.id.adminids);
                 Button button=view1.findViewById(R.id.materialButton);
-                builder.setMessage("       Enter Your Admin ID Here");
+                builder.setMessage("Enter Your Admin ID Here");
 
                 builder.setView(view1);
                 AlertDialog dialog=builder.create();
