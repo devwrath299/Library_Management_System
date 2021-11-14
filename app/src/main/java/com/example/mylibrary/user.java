@@ -2,11 +2,44 @@ package com.example.mylibrary;
 
 public class user {
 
-    String username,title,bookid,author,cost,quantity,bookshelf;
+    String username,title,bookid,author,cost,quantity,bookshelf,address,contact,email;
     public  user(String a)
     {
       username=a;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public user(String a, String b, String c, String d)
+    {
+        username=a;
+        contact=b;
+        email=c;
+        address=d;
+    }
+
     public user(String a,String b,String c,String d,String e,String f)
     {
         title=a;

@@ -63,14 +63,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.425" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/admin_username"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center"
             android:text="Devwrath"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:textStyle="bold"
+            android:textColor="@color/teal_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.527"
@@ -78,13 +79,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.528" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="40dp"
 
             android:drawableLeft="@drawable/ic_baseline_local_phone_24"
-            android:text="+91"
+            app:drawableTint="@color/teal_700"
+            android:textSize="25sp"
+            android:textColor="@color/teal_700"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -92,10 +96,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.709" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:id="@+id/adss"
+            android:textSize="25sp"
+            android:textColor="@color/teal_700"
             android:drawableLeft="@drawable/ic_baseline_home_24"
+            app:drawableTint="@color/teal_700"
             app:layout_constraintBottom_toTopOf="@+id/updss"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -118,50 +126,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/l12"
-        android:visibility="gone"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:id="@+id/adm_name"
-            android:layout_marginTop="40dp"
-            android:textSize="30sp"/>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contact number"
-            android:id="@+id/adm_ph"
-            android:textSize="30sp"/>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:id="@+id/adm_em"
-            android:textSize="30sp"/>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/adm_addres"
-            android:hint="Address"
-            android:textSize="30sp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="UPDATE"
-            android:id="@+id/upd"
-            android:textSize="23sp"
-            android:layout_marginTop="40dp"/>
-
-
-    </LinearLayout>
 
 </FrameLayout>
