@@ -1,6 +1,9 @@
 package com.example.mylibrary;
 
 public class user {
+    public user(){
+
+    }
 
     String username,title,bookid,author,cost,quantity,bookshelf,address,contact,email;
     public  user(String a)

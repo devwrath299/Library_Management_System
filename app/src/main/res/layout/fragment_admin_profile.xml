@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginTop="14dp"
     android:layout_height="match_parent"
     tools:context=".Admin_Fragments.AdminProfile">
 
@@ -24,7 +25,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.004" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbbackground"
@@ -69,9 +70,9 @@
             android:layout_height="50dp"
             android:gravity="center"
             android:text="Devwrath"
+            android:textColor="@color/teal_700"
             android:textSize="35sp"
             android:textStyle="bold"
-            android:textColor="@color/teal_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.527"
@@ -79,16 +80,33 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.528" />
 
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/adminidss"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textIsSelectable="true"
+            android:gravity="center"
+            android:text="df"
+            android:textColor="@color/teal_700"
+            android:textSize="15sp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_username"
+            app:layout_constraintVertical_bias="0.024" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-
             android:drawableLeft="@drawable/ic_baseline_local_phone_24"
-            app:drawableTint="@color/teal_700"
-            android:textSize="25sp"
             android:textColor="@color/teal_700"
-
+            android:textSize="25sp"
+            android:textIsSelectable="true"
+            app:drawableTint="@color/teal_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -97,12 +115,12 @@
             app:layout_constraintVertical_bias="0.709" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/adss"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:id="@+id/adss"
-            android:textSize="25sp"
-            android:textColor="@color/teal_700"
             android:drawableLeft="@drawable/ic_baseline_home_24"
+            android:textColor="@color/teal_700"
+            android:textSize="25sp"
             app:drawableTint="@color/teal_700"
             app:layout_constraintBottom_toTopOf="@+id/updss"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +143,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </FrameLayout>

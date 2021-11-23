@@ -111,7 +111,7 @@ public class AdminProfile extends Fragment {
 
     ImageView image;
     Button button,updsts;
-    TextView name,email,cn,address,phones,adsss,nma;
+    TextView name,email,cn,address,phones,adsss,nma,adminid;
     DatabaseReference reference;
     StorageReference storageReference;
     Uri uri;
@@ -146,11 +146,13 @@ public class AdminProfile extends Fragment {
         backimage=view.findViewById(R.id.sdd);
         phones=view.findViewById(R.id.phone);
         adsss=view.findViewById(R.id.adss);
+        adminid=view.findViewById(R.id.adminidss);
 
 
 
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         uid=user.getUid();
+        adminid.setText("ADMIN ID - "+uid);
 
         reference= FirebaseDatabase.getInstance().getReference().child("admin").child(uid);
         storageReference= FirebaseStorage.getInstance().getReference();

@@ -113,8 +113,7 @@ public class Add_Book extends Fragment {
                 if( !title.getText().toString().isEmpty() && !author.getText().toString().isEmpty() && !costs.getText().toString().isEmpty() && !quantitys.getText().toString().isEmpty() && !bookshelfnos.getText().toString().isEmpty())
                 {
                     String bookids=reference.push().getKey();
-                    user users=new user(title.getText().toString()+"by"+author.getText().toString(),bookids,author.getText().toString(),costs.getText().toString(),quantitys.getText().toString(),bookshelfnos.getText().toString());
-
+                    user users=new user(title.getText().toString(),bookids,author.getText().toString(),costs.getText().toString(),quantitys.getText().toString(),bookshelfnos.getText().toString());
                     reference.child(bookids).setValue(users);
                     Toast.makeText(getContext(), "Sucessfully added", Toast.LENGTH_SHORT).show();
                     fabs.setVisibility(View.VISIBLE);
