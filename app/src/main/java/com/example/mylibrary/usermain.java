@@ -116,7 +116,7 @@ public class usermain extends AppCompatActivity {
             }
             case R.id.profile:
             {
-                getSupportFragmentManager().beginTransaction().replace(R.id.user_containers,new USers_profile()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.user_containers,new user_profiles()).commit();
                 break;
             }
             default:

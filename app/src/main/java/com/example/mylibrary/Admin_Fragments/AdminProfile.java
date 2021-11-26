@@ -133,10 +133,6 @@ public class AdminProfile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_admin_profile, container, false);
-
-
-
-
         updsts=view.findViewById(R.id.updss);
         nma=view.findViewById(R.id.admin_username);
         l2=view.findViewById(R.id.l123);
@@ -147,7 +143,6 @@ public class AdminProfile extends Fragment {
         phones=view.findViewById(R.id.phone);
         adsss=view.findViewById(R.id.adss);
         adminid=view.findViewById(R.id.adminidss);
-
 
 
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();

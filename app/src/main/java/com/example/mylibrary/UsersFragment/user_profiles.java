@@ -1,14 +1,49 @@
 package com.example.mylibrary.UsersFragment;
 
+import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.mylibrary.R;
+import com.example.mylibrary.user;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,11 +92,271 @@ public class user_profiles extends Fragment {
         }
 
     }
+    ImageView image;
+    Button button,updsts;
+    TextView name,email,cn,address,phones,adsss,nma,adminid;
+    DatabaseReference reference;
+    StorageReference storageReference;
+    Uri uri;
+    AlertDialog dialog;
+    ProgressDialog progressDialog;
+    Bitmap bitmap;
+    String uid;
+    LinearLayout l1;
+    ImageView frontimage,backimage;
+    FloatingActionButton back,front;
+    ConstraintLayout l2;
+    String where;
+    ImageView z;
+    int a=0,b=0;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_profiles, container, false);
+        View view= inflater.inflate(R.layout.fragment_user_profiles, container, false);
+        updsts=view.findViewById(R.id.updss);
+        nma=view.findViewById(R.id.admin_username);
+        l2=view.findViewById(R.id.l123);
+        back=view.findViewById(R.id.fbbackground);
+        front=view.findViewById(R.id.fbuser);
+        frontimage=view.findViewById(R.id.cdd);
+        backimage=view.findViewById(R.id.sdd);
+        phones=view.findViewById(R.id.phone);
+        adsss=view.findViewById(R.id.adss);
+        //adminid=view.findViewById(R.id.adminidss);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        String s1 = sharedPreferences.getString("adminID", "");
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        uid=user.getUid();
+        reference= FirebaseDatabase.getInstance().getReference().child("admin").child(s1).child("users").child(uid);
+        storageReference= FirebaseStorage.getInstance().getReference();
+
+        front.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getContext(), "hi", Toast.LENGTH_SHORT).show();
+                a++;
+                Intent intent = CropImage.activity()
+                        .setAspectRatio(16,9)
+                        .getIntent(getContext());
+
+                startActivityForResult(intent, CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                b++;
+                Intent intent = CropImage.activity()
+                        .setAspectRatio(16,9)
+                        .getIntent(getContext());
+
+                startActivityForResult(intent, CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);// (DO NOT use `getActivity()`)
+
+            }
+        });
+
+        updsts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+                View view1=getLayoutInflater().inflate(R.layout.addbook,null);
+                name=view1.findViewById(R.id.adm_name);
+                cn=view1.findViewById(R.id.adm_ph);
+                email=view1.findViewById(R.id.adm_em);
+                address=view1.findViewById(R.id.adm_addres);
+                button =view1.findViewById(R.id.upd);
+
+
+                builder.setView(view1);
+                AlertDialog dialog=builder.create();
+                dialog.show();
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String names=name.getText().toString();
+                        String cns=cn.getText().toString();
+                        String emails=email.getText().toString();
+                        String addresses=address.getText().toString();
+                        if(names.isEmpty() || cns.isEmpty() || emails.isEmpty() || addresses.isEmpty())
+                        {
+                            Toast.makeText(getContext(), "Enter All details", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            user usr=new user(names,cns,emails,addresses);
+
+                            phones.setText(cns);
+                            adsss.setText(addresses);
+                            nma.setText(names);
+                            Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
+
+
+
+                            reference.child("UserDetails").setValue(usr);
+                            dialog.dismiss();
+
+
+
+                        }
+
+
+                    }
+                });
+
+            }
+        });
+        return view;
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                if(a>0)
+                {
+                    z= frontimage;
+                    frontimage.setImageURI(resultUri);
+                    where="fronturl";
+                    updatetofirebase(resultUri);
+                    a=0;
+                }
+                if(b>0)
+                {
+                    z=backimage;
+                    backimage.setImageURI(resultUri);
+                    where="backurl";
+                    updatetofirebase(resultUri);
+                    b=0;
+                }
+            }
+            else
+            {
+                Toast.makeText(getContext(), "Upload Again", Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void updatetofirebase(Uri uris)
+    {
+        final ProgressDialog pd=new ProgressDialog(getContext());
+        pd.setTitle("File Uploader");
+        pd.show();
+
+        final StorageReference uploader=storageReference.child("profileimages/"+"img"+System.currentTimeMillis());
+        uploader.putFile(uris)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                final Map<String,Object> map=new HashMap<>();
+                                map.put(where,uri.toString());
+
+                                reference.child(where).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if(snapshot.exists())
+                                            reference.child(where).updateChildren(map);
+                                        else
+                                            reference.child(where).setValue(map);
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                    }
+                                });
+
+                                pd.dismiss();
+                                Toast.makeText(getContext(),"Updated Successfully",Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        float percent=(100*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+                        pd.setMessage("Uploaded :"+(int)percent+"%");
+                    }
+                });
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        reference.child("UserDetails").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                // run some code
+                if (snapshot.exists()) {
+
+                    String hj = snapshot.child("contact").getValue().toString();
+                    phones.setText("   "+"+91"+hj);
+
+
+                    hj = snapshot.child("address").getValue().toString();
+                    adsss.setText("     "+hj);
+
+                    hj = snapshot.child("username").getValue().toString();
+                    nma.setText(hj);
+
+                }
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reference.child("fronturl").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    Glide.with(getContext()).load(snapshot.child("fronturl").getValue().toString()).into(frontimage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reference.child("backurl").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    Glide.with(getContext()).load(snapshot.child("backurl").getValue().toString()).into(backimage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+
+
+        });
+    }
+
+
+
 }
