@@ -39,9 +39,9 @@ public class bookadapter extends RecyclerView.Adapter< bookadapter.Myviewholder>
         holder.title.setText("Title :"+users.getTitle());
         holder.author.setText("Author :"+users.getAuthor());
         holder.bookid.setText("BookId :"+users.getBookid());
-        holder.cost.setText("cost :"+users.getCost());
-        holder.quantity.setText("quantity :"+users.getQuantity());
-//        holder.bookshelf.setText(users.getBookshelf());
+        holder.cost.setText("Cost :"+users.getCost());
+        holder.quantity.setText("Quantity :"+users.getQuantity());
+        holder.bookshelf.setText("BookShelfNO :"+users.getBookshelf());
         Glide.with(holder.image.getContext()).load(R.drawable.library).into(holder.image);
 
     }
@@ -63,7 +63,7 @@ public class bookadapter extends RecyclerView.Adapter< bookadapter.Myviewholder>
             author=itemView.findViewById(R.id.author);
             cost=itemView.findViewById(R.id.costs);
             quantity=itemView.findViewById(R.id.quantitys);
-            bookshelf=itemView.findViewById(R.id.bookshelfno);
+            bookshelf=itemView.findViewById(R.id.bookshelfnos);
             image=itemView.findViewById(R.id.imgd);
 
         }

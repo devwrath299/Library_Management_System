@@ -97,7 +97,7 @@ public class search_books extends Fragment {
                 for(DataSnapshot dataSnapshot:snapshot.getChildren())
                 {
 
-                        user users=dataSnapshot.getValue(user.class);
+                         user users=dataSnapshot.getValue(user.class);
                          list.add(users);
 
                    // Toast.makeText(getContext(),dataSnapshot.getValue().toString(), Toast.LENGTH_LONG).show();

@@ -2,13 +2,28 @@ package com.example.mylibrary.Admin_Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.mylibrary.R;
+import com.example.mylibrary.UsersAdapter;
+import com.example.mylibrary.bookadapter;
+import com.example.mylibrary.user;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +72,79 @@ public class USers_profile extends Fragment {
         }
     }
 
+    RecyclerView recyclerView;
+    ArrayList<user> list;
+    UsersAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_u_sers_profile, container, false);
+        View view= inflater.inflate(R.layout.fragment_u_sers_profile, container, false);
+        recyclerView = view.findViewById(R.id.recycle);
+
+        String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("admin").child(currentuser).child("users");
+
+
+        list = new ArrayList<>();
+        adapter=new UsersAdapter(getContext(),list);
+        recyclerView.setAdapter(adapter);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user ad=new user();
+
+                for(DataSnapshot dataSnapshot:snapshot.getChildren())
+                {
+                    for(DataSnapshot d:dataSnapshot.getChildren())
+                    {
+
+                        if(d.getKey().equals("UserDetails"))
+                        {
+                            //Toast.makeText(getContext(),d.getKey().toString(), Toast.LENGTH_SHORT).show();
+                            for(DataSnapshot s:d.getChildren())
+                            {
+
+                                if(s.getKey().equals("address"))
+                                ad.setAddress(s.getValue().toString());
+                                if(s.getKey().equals("contact"))
+                                    ad.setContact(s.getValue().toString());
+                                if(s.getKey().equals("email"))
+                                    ad.setEmail(s.getValue().toString());
+                                if(s.getKey().equals("username"));
+                                    ad.setUsername(s.getValue().toString());
+
+
+                            }
+
+                        }
+                        if(d.getKey().equals("fronturl"))
+                        {
+                           for(DataSnapshot sd:d.getChildren())
+                           {
+                            if(sd.getKey().equals("fronturl"))
+                           ad.setUri(sd.getValue().toString());
+
+                           }
+                        }
+
+                    }
+                }
+                list.add(ad);
+                adapter.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        return view;
+
+
     }
 }

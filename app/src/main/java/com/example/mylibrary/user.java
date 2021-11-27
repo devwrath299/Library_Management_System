@@ -1,11 +1,23 @@
 package com.example.mylibrary;
 
+import android.net.Uri;
+
 public class user {
     public user(){
 
     }
 
     String username,title,bookid,author,cost,quantity,bookshelf,address,contact,email;
+   String  uri;
+
+    public String  getUri() {
+        return uri;
+    }
+
+    public void setUri(String  uri) {
+        this.uri = uri;
+    }
+
     public  user(String a)
     {
       username=a;
@@ -41,6 +53,14 @@ public class user {
         contact=b;
         email=c;
         address=d;
+    }
+    public user(String a, String b, String c, String d,String e)
+    {
+        username=a;
+        contact=b;
+        email=c;
+        address=d;
+        uri=e;
     }
 
     public user(String a,String b,String c,String d,String e,String f)
